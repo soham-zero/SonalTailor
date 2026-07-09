@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #FAF9F6;
+  --foreground: #333333;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #FAF9F6;
+    --foreground: #333333;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', serif;
+}
+
+/* ─── Scrollbar ───────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #E2DCD0; border-radius: 6px; }
+::-webkit-scrollbar-thumb:hover { background: #C4827F; }
+
+/* ─── Inputs ──────────────────────────────────────────── */
+input, select, textarea {
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+input:focus, select:focus, textarea:focus {
+  outline: none;
+}
+input::placeholder, textarea::placeholder {
+  color: #9E9E9E;
+  font-size: 0.875rem;
+}
+
+/* ─── Utilities ───────────────────────────────────────── */
+@layer utilities {
+  .card-hover {
+    @apply transition-all duration-200;
+  }
+  .card-hover:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px -4px rgba(0,0,0,0.12), 0 2px 8px -2px rgba(0,0,0,0.06);
+  }
+
+  .modal-backdrop {
+    @apply fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex items-center justify-center p-4;
+    animation: fade-backdrop 0.15s ease-out;
+  }
+
+  .badge {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold tracking-wide;
+  }
+  .badge-emerald { @apply badge bg-boutique-emeraldLight text-emerald-800; }
+  .badge-amber   { @apply badge bg-boutique-amberLight text-amber-800; }
+  .badge-rose    { @apply badge bg-boutique-roseLight text-rose-800; }
+  .badge-ruby    { @apply badge bg-boutique-rubyLight text-red-800; }
+  .badge-indigo  { @apply badge bg-boutique-indigoLight text-indigo-800; }
+  .badge-teal    { @apply badge bg-boutique-tealLight text-teal-800; }
+  .badge-gray    { @apply badge bg-gray-100 text-gray-600; }
+
+  .section-title {
+    @apply font-serif font-bold text-lg text-boutique-charcoal relative inline-block;
+  }
+  .section-title::after {
+    content: '';
+    @apply absolute left-0 -bottom-1 h-0.5 w-8 bg-boutique-roseDark rounded-full;
+  }
+
+  .table-row-hover {
+    @apply hover:bg-boutique-cream/70 transition-colors duration-100;
+  }
+
+  .section-card {
+    @apply bg-white rounded-2xl border border-boutique-border shadow-card overflow-hidden;
+  }
+
+  .spinner {
+    @apply w-5 h-5 border-2 border-boutique-border border-t-boutique-roseDark rounded-full animate-spin;
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.22s ease-out both;
+  }
+
+  .focus-ring {
+    @apply focus:ring-2 focus:ring-boutique-rose/30 focus:border-boutique-roseDark;
+  }
+}
+
+/* ─── Keyframes ───────────────────────────────────────── */
+@keyframes fade-backdrop {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-down {
+  from { opacity: 0; transform: translateY(-8px) scaleY(0.97); }
+  to   { opacity: 1; transform: translateY(0) scaleY(1); }
+}
