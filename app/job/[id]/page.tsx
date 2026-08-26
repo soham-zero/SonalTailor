@@ -186,9 +186,14 @@ export default function JobDetailPage({ params }: { params: Promise<{ id: string
             Bill Reference: <strong className="font-mono text-xs">#{job.transactions?.bill_number || 'N/A'}</strong>
           </p>
         </div>
-        <span className="badge badge-indigo capitalize py-1.5 px-3 text-xs">
-          Stage: {job.status}
-        </span>
+        <div className="flex flex-col items-end gap-2">
+          <span className="badge badge-indigo capitalize py-1.5 px-3 text-xs">
+            Stage: {job.status}
+          </span>
+          <Button variant="outline" size="sm" onClick={() => router.push(`/job/${job.id}/update`)}>
+            Update Stage
+          </Button>
+        </div>
       </div>
 
       {/* Trivial Specs Banner */}
